@@ -31,3 +31,5 @@ while (userInput !== "left" && userInput !== "center" && userInput !== "right") 
   if (userInput === null) {}
 } 
 playerShotDirection = userInput; 
+
+let computerKeeperDirection = DIRECTIONS[Math.floor(Math.random() * remainingTeams.length)];
