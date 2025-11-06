@@ -1,9 +1,7 @@
 const shoot = (userInput, computerKeeperDirection) => {
   return userInput !== computerKeeperDirection;
 };
-
-function startPenaltyGame() {
-  alert("Welcome to my penalty shootout game!");
+const chooseTeams = () => {
   let computerTeam;
   let playerTeam = prompt("Choose your team: Sweden or Australia");
   if (playerTeam === null) {
@@ -20,8 +18,17 @@ function startPenaltyGame() {
     }
   } else {
     alert("You have not chosen a valid team!");
-    return;
   }
+  return {playerTeam, computerTeam};
+};
+
+function startPenaltyGame() {
+  alert("Welcome to my penalty shootout game!");
+  const teams = chooseTeams()
+  if (!teams) return;
+  const {playerTeam, computerTeam} = teams;
+
+
   const DIRECTIONS = ["left", "center", "right"];
   let playerScore = 0;
   let computerScore = 0;
