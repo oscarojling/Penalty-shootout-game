@@ -1,9 +1,10 @@
+const DIRECTIONS = ["left", "center", "right"];
+
 function shoot(userInput, computerKeeperDirection) {
   if (userInput !== computerKeeperDirection) {
     return true;
-  } else {
-    return false;
   }
+  return false;
 }
 function chooseTeams() {
   let computerTeam;
@@ -40,11 +41,7 @@ function getDirection(message) {
     return null;
   }
   direction = direction.toLowerCase();
-  while (
-    direction !== "left" &&
-    direction !== "center" &&
-    direction !== "right"
-  ) {
+  while (!DIRECTIONS.includes(direction)) {
     alert("Think you misspelled, try again!");
     direction = prompt(message);
     if (direction === null) {
@@ -65,7 +62,6 @@ function startPenaltyGame() {
   if (!teams) return;
   const { playerTeam, computerTeam } = teams;
 
-  const DIRECTIONS = ["left", "center", "right"];
   let playerScore = 0;
   let computerScore = 0;
   const TOTAL_ROUNDS = 5;
