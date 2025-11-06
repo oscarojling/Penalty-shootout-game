@@ -1,3 +1,7 @@
+const shoot = (userInput, computerKeeperDirection) => {
+  return userInput !== computerKeeperDirection;
+};
+
 function startPenaltyGame() {
   alert("Welcome to my penalty shootout game!");
   let computerTeam;
@@ -43,11 +47,10 @@ function startPenaltyGame() {
       }
       userInput = userInput.toLowerCase();
     }
-    playerShotDirection = userInput;
     let computerKeeperDirection =
       DIRECTIONS[Math.floor(Math.random() * DIRECTIONS.length)];
-    if (playerShotDirection !== computerKeeperDirection) {
-      alert(`GOOOOOAAAL!`);
+    if (shoot(userInput, computerKeeperDirection)) {
+      alert(`GOOOOOAAAL! for ${playerTeam}`);
       playerScore++;
     } else {
       alert("What a save by the keeper!");
@@ -78,7 +81,7 @@ function startPenaltyGame() {
     let computerShotDirection =
       DIRECTIONS[Math.floor(Math.random() * DIRECTIONS.length)];
     if (computerShotDirection !== diveInput) {
-      alert(`GOOOOOOAAAL!`);
+      alert(`GOOOOOOAAAL! for ${computerTeam}`);
       computerScore++;
     } else {
       alert("What a save! Stunning footwork!");
@@ -114,10 +117,9 @@ function startPenaltyGame() {
         }
       }
       userInput = userInput.toLowerCase();
-      playerShotDirection = userInput;
       let computerKeeperDirection =
         DIRECTIONS[Math.floor(Math.random() * DIRECTIONS.length)];
-      if (playerShotDirection !== computerKeeperDirection) {
+      if (shoot(userInput, computerKeeperDirection)) {
         alert(`GOOOOOAAAL! for ${playerTeam}`);
         playerScore++;
       } else {
@@ -160,7 +162,7 @@ function startPenaltyGame() {
         `This is how the scores stand! ${playerTeam} ${playerScore} - ${computerTeam} ${computerScore}`
       );
       if (playerScore !== computerScore) {
-        return;
+        break;
       }
       if (playerScore > computerScore) {
         alert(`${playerTeam} wins!`);
