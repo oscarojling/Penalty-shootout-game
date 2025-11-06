@@ -6,22 +6,27 @@ const chooseTeams = () => {
   let playerTeam = prompt("Choose your team: Sweden or Australia");
   if (playerTeam === null) {
     alert("You have cancelled the game");
-    return;
-  }
-  playerTeam = playerTeam.toLowerCase();
-  if (playerTeam === "sweden" || playerTeam === "australia") {
-    alert(`You have chosen ${playerTeam}!`);
-    if (playerTeam === "sweden") {
-      computerTeam = "australia";
-    } else {
-      computerTeam = "sweden";
-    }
-  } else {
-    alert("You have not chosen a valid team!");
     return null;
   }
+  playerTeam = playerTeam.toLowerCase();
+  while (playerTeam !== "sweden" && playerTeam !== "australia") {
+    alert(`You have not chosen a valid team!`);
+    playerTeam = prompt("Choose your team: Sweden or Australia")
+    if (playerTeam === null) {
+    alert("You have cancelled the game");
+    return null;
+    }
+    playerTeam = playerTeam.toLowerCase()
+  } 
+    alert(`You have chosen ${playerTeam}!`);
+    if (playerTeam === "sweden") {
+      computerTeam = "australia"
+    } else {
+      computerTeam = "sweden"
+    }
+  
   return { playerTeam, computerTeam };
-};
+}
 
 const getDirection = (message) => {
   let direction = prompt(message);
