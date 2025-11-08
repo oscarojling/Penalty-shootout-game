@@ -1,12 +1,12 @@
 const DIRECTIONS = ["left", "center", "right"];
 
-function shoot(userInput, computerKeeperDirection) {
+const shoot = (userInput, computerKeeperDirection) => {
   if (userInput !== computerKeeperDirection) {
     return true;
   }
   return false;
-}
-function chooseTeams() {
+};
+const chooseTeams = () => {
   let computerTeam;
   let playerTeam = prompt("Choose your team: Sweden or Australia");
   if (playerTeam === null) {
@@ -32,9 +32,9 @@ function chooseTeams() {
     computerTeam = "Sweden";
   }
   return { playerTeam, computerTeam };
-}
+};
 
-function getDirection(message) {
+const getDirection = (message) => {
   let direction = prompt(message);
   if (direction === null) {
     alert("You have cancelled the game");
@@ -51,42 +51,51 @@ function getDirection(message) {
     direction = direction.toLowerCase();
   }
   return direction;
-}
+};
 const randomDirection = (directionsArray) => {
   return directionsArray[Math.floor(Math.random() * directionsArray.length)];
 };
 
-function startPenaltyGame() {
+const startPenaltyGame = () => {
   alert("Welcome to my penalty shootout game!");
+
   const teams = chooseTeams();
   if (!teams) return;
   const { playerTeam, computerTeam } = teams;
 
   let playerScore = 0;
   let computerScore = 0;
+
   const TOTAL_ROUNDS = 5;
+
   for (let round = 1; round <= TOTAL_ROUNDS; round++) {
     alert(`Round: ${round} - Choose where to shoot!`);
+
     let userInput = getDirection(
       "Where do you want to shoot? left, center or right?"
     );
     if (!userInput) return;
+
     let computerKeeperDirection = randomDirection(DIRECTIONS);
     if (shoot(userInput, computerKeeperDirection)) {
       alert(`GOOOOOAAAL! for ${playerTeam}`);
       playerScore++;
     } else {
-      alert("What a save by the keeper!");
+      alert("Denied!! Outstanding save!");
     }
+
     alert(
       `This is how the scores stand! ${playerTeam} ${playerScore} - ${computerTeam} ${computerScore}`
     );
+
     alert(`Now it's time for ${computerTeam} to take the penalty`);
     let diveInput = getDirection(
       "Where do you want to dive? left, center or right?"
     );
     if (!diveInput) return;
+
     let computerShotDirection = randomDirection(DIRECTIONS);
+
     if (computerShotDirection !== diveInput) {
       alert(`GOOOOOOAAAL! for ${computerTeam}`);
       computerScore++;
@@ -96,6 +105,7 @@ function startPenaltyGame() {
     alert(
       `This is how the scores stand! ${playerTeam} ${playerScore} - ${computerTeam} ${computerScore}`
     );
+    
   }
   if (playerScore > computerScore) {
     alert(`${playerTeam} wins!`);
@@ -114,7 +124,7 @@ function startPenaltyGame() {
         alert(`GOOOOOAAAL! for ${playerTeam}`);
         playerScore++;
       } else {
-        alert("What a save by the keeper!");
+        alert("Unbelievable reflex save!!");
       }
       alert(
         `This is how the scores stand! ${playerTeam} ${playerScore} - ${computerTeam} ${computerScore}`
@@ -141,5 +151,5 @@ function startPenaltyGame() {
       }
     }
   }
-}
+};
 startPenaltyGame();
